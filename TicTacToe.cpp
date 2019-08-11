@@ -2,18 +2,20 @@
 #include <cstdlib>
 #include "Players.h"
 
-
-Player* player1;
-Player* player2;
-
+Player* selectPlayer(char, int);
 void board(char * square);
 int checkwin(int, char * square);
-bool setup();
 
 int main() {
 
-    if (!setup())
-        return 0;
+    cout << "\n\n\tTic Tac Toe\n\n";
+    cout << "Available Character: Human [H]" << endl;
+
+    Player* player1 = selectPlayer('X', 1);
+    Player* player2 = selectPlayer('O', 2);
+
+    if(player1 == 0 || player2 == 0)
+        return -1;
 
     char square[3][3] = {{'1', '2', '3'}, {'4', '5', '6'}, {'7', '8', '9'}};
 
@@ -48,37 +50,24 @@ int main() {
     return 0;
 }
 
-bool setup(){
-    
-    char pl1, pl2;
 
-    cout << "\n\n\tTic Tac Toe\n\n";
-    cout << "Available Character: Human [H]" << endl;
+Player* selectPlayer(char icon, int num){
+    char input;
     cout << "Player 1: ";
-    cin >> pl1;
-    cout << "Player 2: ";
-    cin >> pl2;
-
-    return (!selectPlayer(player1, pl1, 'X', 1) || ! selectPlayer(player2, pl2, 'O', 2));
-     
-}
-
-bool selectPlayer(Player* player, char input, char icon, int num){
+    cin >> input;
 
     switch (input)
     {
     case 'h' :
-        player = new Human(num, icon);
+        return new Human(num, icon);
         break;
 
     default:
         cout << "Wrong enter. ";
         system("pause");
-        return false;
+        return 0;
         break;
     }
-
-    return true;
 
 }
 

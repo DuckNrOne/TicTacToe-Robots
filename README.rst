@@ -17,8 +17,7 @@ The order is self-explaining: each array in the first dimension is a row.
   
 If you want to add a new player, you have to create an instance of the class *Player*. Here you have a simple example of such an instance.
 Also, you should take a look to the headerfile *Players.h* and add your class structure. 
-To select your robot to add a new case to the switch statement at the method *selectPlayer* and the signature of your robot at the method 
-*setup*.
+To select your robot to add a new case to the switch statement at the method *selectPlayer* and the signature of your robot at the main method of *TicTacToe.cpp*.
 
 I would be happy if you add the name of the robot and yours to the *Robots.rst* file ;)
 
