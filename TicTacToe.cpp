@@ -53,13 +53,17 @@ int main() {
 
 Player* selectPlayer(char icon, int num){
     char input;
-    cout << "Player 1: ";
+    cout << "Player " << num << ": ";
     cin >> input;
 
     switch (input)
     {
     case 'h' :
         return new Human(num, icon);
+        break;
+
+    case 'm' :
+        return new MiniMax(num, icon);
         break;
 
     default:

@@ -24,6 +24,13 @@ public:
     Human(int, char);
 };
 
+// Using MiniMax
+class MiniMax : public Player{
+public:
+    bool chooseField(char*);
+    MiniMax(int, char);
+};
+
 
 /* Example
 
