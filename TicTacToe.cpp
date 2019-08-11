@@ -50,10 +50,12 @@ int main() {
     return 0;
 }
 
-
+/*
+* Selects a player and returns a pointer to the new instance
+*/
 Player* selectPlayer(char icon, int num){
     char input;
-    cout << "Player 1: ";
+    cout << "Player " << num << ": ";
     cin >> input;
 
     switch (input)
@@ -72,6 +74,7 @@ Player* selectPlayer(char icon, int num){
 }
 
 /*
+* Checks if somebody won
 * 0 >>> The play didn't end
 * 1 >>> Player 1 won
 * 2 >>> Player 2 won
@@ -102,6 +105,9 @@ int checkwin(int player, char * square){
     return -1;
 }
 
+/*
+* Creates an update of the board
+*/
 void board(char * square){
 
 	system("cls");
