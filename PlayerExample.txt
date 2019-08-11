@@ -1,0 +1,9 @@
+#include "Players.h"
+
+PlayerExample::PlayerExample(int player, char icon) : Player(player, icon){}
+
+bool PlayerExample::chooseField(char * square){
+
+    // Code 
+
+}

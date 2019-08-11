@@ -1,14 +1,8 @@
-#include <iostream>
 #include <ctime>
 #include <cstdlib>
-#include "Player.cpp"
-using namespace std;
+#include "Players.h"
 
-/*
- * 0 >>> Player
- * 1 >>> AI
- * 2 >>> KI
- */ 
+
 Player* player1;
 Player* player2;
 
@@ -65,25 +59,18 @@ bool setup(){
     cout << "Player 2: ";
     cin >> pl2;
 
-    switch (pl1)
-    {
-    case 'h':
-        player1 = new Human(1, 'X');
-        break;
-    
-    default:
-        cout << "Wrong enter. ";
-        system("pause");
-        return false;
-        break;
-    }
+    return (!selectPlayer(player1, pl1, 'X', 1) || ! selectPlayer(player2, pl2, 'O', 2));
+     
+}
 
-    switch (pl2)
+bool selectPlayer(Player* player, char input, char icon, int num){
+
+    switch (input)
     {
     case 'h' :
-        player2 = new Human(2, 'O');
+        player = new Human(num, icon);
         break;
-    
+
     default:
         cout << "Wrong enter. ";
         system("pause");
@@ -92,7 +79,7 @@ bool setup(){
     }
 
     return true;
-     
+
 }
 
 /*
