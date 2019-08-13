@@ -1,5 +1,10 @@
 #include "Players.h"
 
+/*
+* ROBOT: MiniMax
+* Although the name of the robot is "MiniMax", it don't use the *real* MiniMax algorithm. 
+* More than a modified version of it.
+*/
 class MiniMax : public Player{
 public:
     bool chooseField(char*);
