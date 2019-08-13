@@ -8,7 +8,7 @@
             "type": "shell",
             "command": "g++",
             "args": [
-                "-g", "TicTacToe.cpp", "Player.cpp", "Human.cpp"
+                "-g", "TicTacToe.cpp", "Player.cpp", "Human.cpp", "MiniMax.cpp"
             ],
             "group": {
                 "kind": "build",

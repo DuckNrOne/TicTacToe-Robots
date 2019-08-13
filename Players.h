@@ -2,7 +2,7 @@
 
 #include <iostream>
 using namespace std;
-int checkwin(int player, char * square);
+int checkwin(int, char*);
 
 // MOTHER OF EVERY PLAYER
 class Player{
@@ -10,7 +10,7 @@ private:
     int m_player;
     char m_icon;
 public:
-    Player(int player, char icon);
+    Player(int, char);
     ~Player();
     int getPlayer();
     char getIcon();

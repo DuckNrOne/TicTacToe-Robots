@@ -4,12 +4,11 @@
 
 Player* selectPlayer(char, int);
 void board(char * square);
-int checkwin(int, char * square);
 
 int main() {
 
     cout << "\n\n\tTic Tac Toe\n\n";
-    cout << "Available Character: Human [H]" << endl;
+    cout << "Available Character: Human [H], MiniMax [M]" << endl;
 
     Player* player1 = selectPlayer('X', 1);
     Player* player2 = selectPlayer('O', 2);
@@ -23,6 +22,9 @@ int main() {
 	int win;
     char icon;
     Player* actPlayer = (rand()%2)?player1:player2;
+
+    cout << ((actPlayer->getPlayer()==1)?2:1) << " begins. ";
+    system("pause");
 
     do {
         board((char*) square);
