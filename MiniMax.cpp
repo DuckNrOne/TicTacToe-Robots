@@ -6,6 +6,7 @@ public:
     int endControll(char*, int, int);
     int possibleTake(char *, int, int);
     int selectField(char*, int, int, int);
+    int kickPossible(char*);
     MiniMax(int, char);
 };
 
@@ -37,14 +38,30 @@ int MiniMax::endControll(char * square, int player, int depth){
     int check = checkwin(player, square);
 
     if(check == this->getPlayer())
-        return depth*1;
+        return depth;
     else if(check == 0)    
-        return this->possibleTake(square, (player==1)?2:2, depth/2);
+        return -depth+this->possibleTake(square, (player==1)?2:2, --depth);
     else if(check == -1)
         return 0;
     else 
-        return depth*-1;
+        return -2*depth;
 
+}
+
+int MiniMax::kickPossible(char* square){
+
+    int tempCheck;
+
+    for(int i = 0; i < 9; i++){
+        if(*(square+i) != 'X' && *(square+i) != 'O'){
+            char* temp = copyArray(square);
+            *(temp+i) = (getPlayer() == 2)?'X':'O';
+            tempCheck = checkwin(getPlayer(), temp);
+            if(tempCheck == getPlayer() || tempCheck == ((getPlayer() == 2)?1:2))
+                return i;
+        }
+    }
+    return -1;
 }
 
 bool MiniMax::chooseField(char * square){
@@ -52,10 +69,18 @@ bool MiniMax::chooseField(char * square){
     int max = -10000;
     int index=-1;
     int tempMax;
+    int tempIndex;
 
      for(int i = 0; i < 9; i++){
          if(*(square+i) != 'X' && *(square+i) != 'O'){
-             tempMax = this->selectField(square, getPlayer(), (2^9), i);
+             
+            tempIndex = kickPossible(square);
+            if(tempIndex != -1){
+                *(square+tempIndex) = this->getIcon();
+                return true;
+            }
+
+             tempMax = this->selectField(square, getPlayer(), 9, i);
              if(tempMax > max){
                 index = i;
                 max = tempMax;
