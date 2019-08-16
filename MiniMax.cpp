@@ -5,27 +5,27 @@
 * Although the name of the robot is "MiniMax", it don't use the *real* MiniMax algorithm. 
 * More than a modified version of it.
 */
-class MiniMax : public Player{
+class Max : public Player{
 public:
     bool chooseField(char*);
     int endControll(char*, int, int);
     int possibleTake(char *, int, int);
     int selectField(char*, int, int, int);
     int kickPossible(char*);
-    MiniMax(int, char);
+    Max(int, char);
 };
 
 char* copyArray(char*);
 
-MiniMax::MiniMax(int player, char icon) : Player(player, icon){}
+Max::Max(int player, char icon) : Player(player, icon){}
 
-int MiniMax::selectField(char* square, int player, int depth, int index){
+int Max::selectField(char* square, int player, int depth, int index){
     char* temp = copyArray(square);
     *(temp+index) = (player==1)?'X':'O';
     return endControll(temp, player, --depth);
 }
 
-int MiniMax::possibleTake(char * square, int player, int depth){
+int Max::possibleTake(char * square, int player, int depth){
     int sum = 0;
 
     for(int i = 0; i < 9; i++){
@@ -38,7 +38,7 @@ int MiniMax::possibleTake(char * square, int player, int depth){
 
 }
 
-int MiniMax::endControll(char * square, int player, int depth){
+int Max::endControll(char * square, int player, int depth){
 
     int check = checkwin(player, square);
 
@@ -53,7 +53,7 @@ int MiniMax::endControll(char * square, int player, int depth){
 
 }
 
-int MiniMax::kickPossible(char* square){
+int Max::kickPossible(char* square){
 
     int tempCheck;
 
@@ -69,7 +69,7 @@ int MiniMax::kickPossible(char* square){
     return -1;
 }
 
-bool MiniMax::chooseField(char * square){
+bool Max::chooseField(char * square){
 
     int max = -10000;
     int index=-1;

@@ -24,11 +24,13 @@ public:
     Human(int, char);
 };
 
-// Using MiniMax
-class MiniMax : public Player{
+// MAX
+// Iterating through possible moves till finisch
+// win >>> +1; lose >>> -1; nothing happen >>> -1 
+class Max : public Player{
 public:
     bool chooseField(char*);
-    MiniMax(int, char);
+    Max(int, char);
 };
 
 

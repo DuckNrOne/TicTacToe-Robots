@@ -8,7 +8,7 @@ void board(char * square);
 int main() {
 
     cout << "\n\n\tTic Tac Toe\n\n";
-    cout << "Available Character: Human [H], MiniMax [M]" << endl;
+    cout << "Available Character: Human [H], Max [M]" << endl;
 
     Player* player1 = selectPlayer('X', 1);
     Player* player2 = selectPlayer('O', 2);
@@ -67,7 +67,7 @@ Player* selectPlayer(char icon, int num){
         break;
 
     case 'm' :
-        return new MiniMax(num, icon);
+        return new Max(num, icon);
         break;
 
     default:
