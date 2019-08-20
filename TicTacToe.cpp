@@ -4,6 +4,7 @@
 
 Player* selectPlayer(char, int);
 void board(char * square);
+void setupBoard(char*);
 
 int main() {
 
@@ -16,7 +17,9 @@ int main() {
     if(player1 == 0 || player2 == 0)
         return -1;
 
-    char square[3][3] = {{'1', '2', '3'}, {'4', '5', '6'}, {'7', '8', '9'}};
+    char* square = new char[9];
+
+    setupBoard(square);
 
     srand(time(0));
 	int win;
@@ -27,7 +30,7 @@ int main() {
     system("pause");
 
     do {
-        board((char*) square);
+        board(square);
         
         if(actPlayer == player1)
             actPlayer = player2;
@@ -35,13 +38,13 @@ int main() {
             actPlayer = player1;
 
 
-        do{} while (!actPlayer->chooseField((char*)square));
+        do{} while (!actPlayer->chooseField(square));
 
-        win = checkwin(actPlayer->getPlayer(), (char*)square);
+        win = checkwin(actPlayer->getPlayer(), square);
         
     } while (win == 0);
 
-    board((char*)square);
+    board(square);
 
     if(win == -1){
         cout << "Nobody won." << endl;
@@ -49,6 +52,7 @@ int main() {
         cout << "Player " << win << " won" << endl;
     }
     system("pause");
+    delete[] square;
     return 0;
 }
 
@@ -89,21 +93,21 @@ Player* selectPlayer(char icon, int num){
 int checkwin(int player, char * square){
     
     for(int i = 0; i < 3; i++){
-        if((*(square+3*i+0) == *(square+3*i+1) && *(square+3*i+0) == *(square+3*i+2)) ||
-            (*(square+0*3+i) == *(square+3*1+i) && *(square+3*0+i) == *(square+3*2+i))){
+        if((square[3*i+0] == square[3*i+1] && square[3*i+0] == square[3*i+2]) ||
+            (square[0*3+i] == square[3*1+i] && square[3*0+i] == square[3*2+i])){
             return player;
         }
     }
 
     
-    if((*(square+3*0+0) == *(square+3*1+1) && *(square+3*0+0) == *(square+2*3+2)) ||
-        (*(square+0*3+2) == *(square+1*3+1) && *(square+0*3+2) == *(square+2*3+0))){
+    if((square[3*0] == square[3*1+1] && square[3*0+0] == square[2*3+2]) ||
+        (square[0*3+2] == square[1*3+1] && square[0*3+2] == square[2*3+0])){
         return player;
     }
 
     for(int i = 0; i < 3; i++){
         for(int j = 0; j < 3; j++){
-            if(*(square+3*i+j) != 'X' && *(square+3*i+j) != 'O'){
+            if(square[3*i+j] != 'X' && square[3*i+j] != 'O'){
                 return 0;
             }
         }
@@ -121,13 +125,25 @@ void board(char * square){
 	cout << "Player 1 (X)  -  Player 2 (O)" << endl << endl;
 	cout << endl;
 	cout << "     |     |     " << endl;
-	cout << "  " << *square << "  |  " << *(square+1) << "  |  " << *(square+2) << endl;
+	cout << "  " << square[0] << "  |  " << square[1] << "  |  " << square[2] << endl;
 	cout << "_____|_____|_____" << endl;
 	cout << "     |     |     " << endl;
-	cout << "  " << *(square+3) << "  |  " << *(square+4) << "  |  " << *(square+5) << endl;
+	cout << "  " << square[3] << "  |  " << square[4] << "  |  " << square[5] << endl;
 	cout << "_____|_____|_____" << endl;
 	cout << "     |     |     " << endl;
-	cout << "  " << *(square+6) << "  |  " << *(square+7) << "  |  " << *(square+8) << endl;
+	cout << "  " << square[6] << "  |  " << square[7] << "  |  " << square[8] << endl;
 	cout << "     |     |     " << endl << endl;
+}
+
+void setupBoard(char* square){
+    square[0] = '1';
+    square[1] = '2';
+    square[2] = '3';
+    square[3] = '4';
+    square[4] = '5';
+    square[5] = '6';
+    square[6] = '7';
+    square[7] = '8';
+    square[8] = '9';
 }
 
